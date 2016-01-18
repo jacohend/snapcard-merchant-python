@@ -16,6 +16,7 @@ class Merchant_API(object):
         def wrap(self, *args, **kwargs):
             url, method, body = func(self, *args, **kwargs)
             params = {'timestamp': int(time.time() * 1000)}
+            url += '?timestamp={}'.format(params['timestamp'])
             headers = {}
             headers['Content-Type'] = 'application/json'
             headers['X-Api-Version'] = self.api_version
