@@ -1,3 +1,3 @@
 Python wrapper for Snapcard Merchant API. WIP. 
 
-from merchant.merchant import Merchant_API
+from snapcard-wrapper-python.api.merchant import Merchant_API
