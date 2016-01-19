@@ -18,7 +18,8 @@ def Merchant(object):
             try:
                 if key=="fiatPayoutMethod":
                     self.fiatPayoutMethod = FiatPayoutMethod(merc_dict[key])
-                setattr(self, key, merc_dict[key])
+                else:
+                    setattr(self, key, merc_dict[key])
             except Exception as e:
                 print(e)
     
