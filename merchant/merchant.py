@@ -1,17 +1,18 @@
-from fiat_payout_method import FiatPayoutMethod
+from .fiat_payout_method import FiatPayoutMethod
+import json
 
-def Merchant(object):
-    id = ""
-    name = ""
-    createdAt = 0
-    defaultRawPayout = 0
-    rawPayoutSrn = ""
-    verified = False
-    invoiceFeePercentage = 0.0
-    memberships = []
+class Merchant(object):
+    id = None
+    name = None
+    createdAt = None
+    defaultRawPayout = None
+    rawPayoutSrn = None
+    verified = None
+    invoiceFeePercentage = None
+    memberships = None
     fiatPayoutMethod = None
-    totalBalances = {}
-    availableBalances = {} 
+    totalBalances = None
+    availableBalances = None
 
     def __init__(self, merc_dict):
         for key in merc_dict:
@@ -19,8 +20,9 @@ def Merchant(object):
                 if key=="fiatPayoutMethod":
                     self.fiatPayoutMethod = FiatPayoutMethod(merc_dict[key])
                 else:
-                    setattr(self, key, merc_dict[key])
+                    setattr(self, str(key), merc_dict[key])
             except Exception as e:
                 print(e)
-    
 
+    def toJson(self):
+        return json.dumps(self.__dict__)

@@ -1,22 +1,30 @@
+import json
+
 def FiatPayoutMethod(object):
-    id = ""
-    owner = ""
-    createdAt = 0
-    name = ""
-    defaultCurrency = ""
-    disabled = False
-    nameOnMethod = ""
-    last4Digits = ""
+    id = None
+    owner = None
+    createdAt = None
+    name = None
+    defaultCurrency = None
+    disabled = None
+    nameOnMethod = None
+    last4Digits = None
     brand = None
     expirationDisplay = None
-    type = ""
-    linkType = ""
-    supportsDeposit = False
-    supportsPayment = False
+    type = None
+    linkType = None
+    supportsDeposit = None
+    supportsPayment = None
+
     def __init__(self, payout_dict):
         for key in payout_dict:
             try:
-                setattr(self, key, payout_dict[key])
+                setattr(self, str(key), payout_dict[key])
             except Exception as e:
                 print(e)
+
+    def toJson(self):
+        return json.dumps(self.__dict__)
+
+
 
