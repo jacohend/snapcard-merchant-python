@@ -15,8 +15,9 @@ class Merchant_API(object):
     def authenticate_request(func):
         def wrap(self, *args, **kwargs):
             url, method, body = func(self, *args, **kwargs)
-            params = {'timestamp': int(time.time() * 1000)}
-            url += '?timestamp={}'.format(params['timestamp'])
+            timestamp = int(time.time() * 1000)
+            url += '?timestamp={}'.format(timestamp)
+            params={}
             headers = {}
             headers['Content-Type'] = 'application/json'
             headers['X-Api-Version'] = self.api_version
